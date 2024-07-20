@@ -1,6 +1,8 @@
 @function getAnimationD($duration: number){
     @return calc($duration * var(--animation-speed))
-}
+};
+@import "../navbar/partials/animation.scss";
+@import "../../styles/index.scss";
 .sidebar{
     position: fixed;
     top: 0;
@@ -9,7 +11,8 @@
     width: 250px;
     background-color: var(--background-color);
     box-shadow: 0 0 0 1000px rgba(0,0,0,0.2), 3px 0 5px var(--shadow-color);
-    animation: getAnimationD(.5s) slide;
+    z-index: 1000;
+    animation: getAnimationD(.3s) slideInLeft forwards;
     .sidebar-link{
         display: block;
         padding: .5em 1em;
@@ -17,6 +20,13 @@
         margin-bottom: 1em;
         color: var(--text-color);
         font-size: 1.1em;
+
+        animation: getAnimationD(.3s) slideInLeft forwards;
+        @for $i from 1 through 3{
+            &:nth-child(#{$i}) {
+                animation-delay: #{$i * .1}s;
+            }
+        }
         &.active{
             border-left-color: var(--primary-color);
         }

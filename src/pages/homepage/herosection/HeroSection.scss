@@ -1,0 +1,20 @@
+.section {
+    display: flex;
+    align-items: center;
+
+    .col {
+        width: 50%;
+       }
+    }
+.title{
+    color: var(--text-color);
+    font-size: 3em;
+    margin-bottom: .25em;
+}
+.info{
+    color: var(--color-light);
+    font-size: 1em;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin-bottom: .5em;
+}
