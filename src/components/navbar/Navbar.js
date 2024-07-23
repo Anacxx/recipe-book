@@ -2,7 +2,9 @@ import { useState } from "react"
 import { faHome, faList, faCog, faUtensilSpoon } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from "../sidebar/Sidebar"
 import AvatarButton from "../AvatarButton/AvatarButton";
+import { useNavigate } from 'react-router-dom';
 export default function Navbar(){
+    const navigate = useNavigate()
     const [showSidebar, setShowSidebar] = useState(false)
     const links = [
         {
@@ -35,7 +37,10 @@ export default function Navbar(){
                 <a href="#!" className="logo">LoveC<span>oo</span>k</a>
                 <div className="nav-links">
                     { links.map(link => (
-                        <a href="#!" key={link.name}>{link.name}</a>
+                        <a href="#!" key={link.name} onClick={(e) => {
+                            e.preventDefault();
+                            navigate(link.path)}} 
+                        >{link.name}</a>
                     ))}
                 </div>
                 <AvatarButton/>

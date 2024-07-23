@@ -8,7 +8,7 @@ export const goToHome = (navigate) => {
     navigate("/")
 }
 export const goToNewRecipe = (navigate) => {
-    navigate("/new-recipe")
+    navigate("/newRecipe")
 }
 export const goToRecipeDetails = (navigate,id) => {
     navigate(`/details/${id}`)
