@@ -1,4 +1,4 @@
-export default function RecipesPage(){
+export const RecipesPage = () => {
     return(
         <div>RecipesPage</div>
     )

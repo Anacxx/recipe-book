@@ -1,4 +1,4 @@
-export default function NewRecipePage(){
+export const NewRecipePage = () => { 
     return(
         <div>NewRecipePage</div>
     )
