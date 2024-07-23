@@ -15,10 +15,10 @@ export const Router = () => {
                 <Route path="/login" element = {<LoginPage/>}/>
                 <Route path="/signup" element = {<SignupPage/>}/>
                 <Route path="/newRecipe" element = {<NewRecipePage/>}/>
-                <Route path="/details" element = {<RecipeDetailsPage/>}/>
+                <Route path="/details/:id" element = {<RecipeDetailsPage/>}/>
                 <Route path="/recipes" element = {<RecipesPage/>}/>
                 <Route path="/settings" element = {<SettingsPage/>}/>
-                <Route path="/error" element = {<ErrorPage/>}/>
+                <Route path="*" element = {<ErrorPage/>}/>
             </Routes>
         </BrowserRouter>
     )
