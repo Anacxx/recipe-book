@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { faHome, faList, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faList, faCog, faUtensilSpoon, faUser } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from "../sidebar/Sidebar"
 export default function Navbar(){
     const [showSidebar, setShowSidebar] = useState(false)
@@ -15,9 +15,19 @@ export default function Navbar(){
             icon: faList
         },
         {
+            name: 'New Recipe',
+            path: '/newRecipe',
+            icon: faUtensilSpoon
+        },
+        {
             name: 'Settings',
             path: '/settings',
             icon: faCog
+        },
+        {
+            name: 'Login',
+            path: '/login',
+            icon: faUser
         }
     ]
     function closeSidebar(){
@@ -26,7 +36,7 @@ export default function Navbar(){
     return(
         <>
             <div className="navbar container">
-                <a href="#!" className="logo">F<span>oo</span>diesHub</a>
+                <a href="#!" className="logo">LoveC<span>oo</span>k</a>
                 <div className="nav-links">
                     { links.map(link => (
                         <a href="#!" key={link.name}>{link.name}</a>

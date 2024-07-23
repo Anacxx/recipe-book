@@ -1,10 +1,8 @@
-import Homepage from "./pages/homepage/HomePage";
-import Navbar from "./components/navbar/Navbar";
+import { Router } from "./router/Router";
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <Homepage/>
+      <Router/>
     </div>
   );
 }

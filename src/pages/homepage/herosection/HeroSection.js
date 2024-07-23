@@ -3,17 +3,17 @@ import './HeroSection.scss';
 import CustomImage from '../../../components/customImage/CustomImage';
 export default function HeroSection(){
     return(
-        <div className="section">
-            <div className="col">
-                <h1 className='title'>Qual é o nosso objetivo?</h1>
-                <p className='info'>
-                    Nostrud eu reprehenderit excepteur velit sit. Mollit magna amet deserunt aliquip anim magna exercitation non sunt. Laborum est ad commodo magna deserunt ullamco occaecat.               
-                </p>
-                <Button/>
-            </div>
-            <div className="col">
-                <CustomImage/>
-            </div>
-        </div>
+                        <div className="section">
+                            <div className="col">
+                                <h1 className='title'>Qual é o nosso objetivo?</h1>
+                                <p className='info'>
+                                    Nostrud eu reprehenderit excepteur velit sit. Mollit magna amet deserunt aliquip anim magna exercitation non sunt. Laborum est ad commodo magna deserunt ullamco occaecat.               
+                                </p>
+                                <Button/>
+                            </div>
+                            <div className="col">
+                                <CustomImage/>
+                            </div>
+                        </div>
     )
 }

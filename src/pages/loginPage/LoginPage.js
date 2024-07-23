@@ -1,5 +1,13 @@
+import LoginImg from '../../assets/loginImg.jpg'
 export const LoginPage = () => {
     return(
-        <div>Login</div>
+        <>
+        <div>
+            <img src={LoginImg} alt='Imagem de comida' />
+        </div>
+        <div>
+
+        </div>
+        </>
     )
 }
