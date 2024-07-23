@@ -1,6 +1,6 @@
 import Button from '../../../components/button/Button';
 import './HeroSection.scss';
-
+import CustomImage from '../../../components/customImage/CustomImage';
 export default function HeroSection(){
     return(
         <div className="section">
@@ -12,7 +12,7 @@ export default function HeroSection(){
                 <Button/>
             </div>
             <div className="col">
-                col2
+                <CustomImage/>
             </div>
         </div>
     )
