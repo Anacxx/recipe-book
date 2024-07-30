@@ -1,9 +1,10 @@
 import { useProtectedPage } from "../../hooks/useProtectedPage"
-import { useRequestData } from "../../hooks/useRequestData"
+// import { useRequestData } from "../../hooks/useRequestData"
 
 export const RecipeDetailsPage = () => {
-    useRequestData()
     useProtectedPage()
+    // useRequestData()
+
     return(
         <div>RecipeDetailsPage</div>
     )

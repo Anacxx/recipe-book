@@ -11,7 +11,7 @@ export default function HeroSection(){
                                 </p>
                                 <Button/>
                             </div>
-                            <div className="col">
+                            <div className="col2">
                                 <CustomImage/>
                             </div>
                         </div>
