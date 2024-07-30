@@ -1,93 +1,114 @@
 import React, { useState } from 'react';
-import LoginImg from '../../assets/loginImg.jpg'
-import { SubmitButton,TogglePassword, FormContainer, ErrorMessage, FormGroup, PasswordInputContainer, Form} from './LoginPageStyles';
+import { useNavigate } from 'react-router-dom';
+import LoginImg from '../../assets/loginImg.jpg';
+import { goToRecipes, GoToSignup } from '../../router/Coordinator';
+import {
+  StyledInput,
+  StyledForm,
+  StyledButton,
+  StyledDiv,
+  GradientLineLogin,
+  FormContainer,
+  FormGroup,
+  PasswordInputContainer,
+  SubmitButton
+} from './LoginPageStyles';
+
 export const LoginPage = () => {
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
-        const [showPassword, setShowPassword] = useState(false);
-        const [emailError, setEmailError] = useState('');
-        const [passwordError, setPasswordError] = useState('');
-      
-        const togglePasswordVisibility = () => {
-          setShowPassword(!showPassword);
-        };
-      
-        const validateEmail = () => {
-          if (!email) {
-            setEmailError('Por favor, insira um endereço de email.');
-          } else if (!/\S+@\S+\.\S+/.test(email)) {
-            setEmailError('Por favor, insira um endereço de email válido.');
-          } else {
-            setEmailError('');
-          }
-        };
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    email: '',
+    password: ''
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-        const validatePassword = () => {
-          if (!password) {
-            setPasswordError('Por favor, insira uma senha.');
-          } else if (password.length < 8) {
-            setPasswordError('A senha deve ter pelo menos 8 caracteres.');
-          } else if (!/(?=.*[A-Z])/.test(password)) {
-            setPasswordError('A senha deve conter pelo menos uma letra maiúscula.');
-          } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-            setPasswordError('A senha deve conter pelo menos um caractere especial.');
-          } else {
-            setPasswordError('');
-          }
-        };
-      
-        const handleSubmit = (e) => {
-          e.preventDefault();
-          validateEmail();
-          validatePassword();
-          if (emailError === '' && passwordError === '') {
-            console.log('Dados do formulário enviados:', { email, password });
-          }
-        };
-    return(
-        <>
+  const changeForm = (event) => {
+    const { name, value } = event.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const Login = async (event) => {
+    event.preventDefault();
+      try {
+        setIsLoading(true);
+        // const body = {
+        //   email: form.email,
+        //   password: form.password
+        // };
+        // const response = await axios.post(`${BASE_URL}/login`, body);
+        // const authToken = response.data.token;
+        // window.localStorage.setItem(TOKEN_NAME, authToken);
+        alert('Ok')
+        setIsLoading(false);
+        goToRecipes(navigate);
+      } catch (error) {
+        setIsLoading(false);
+        if (error?.response?.data) {
+          
+        } else {
+        
+        }
+      }
+    }
+    return (
+      <>
         <div>
-            <img src={LoginImg} alt='Imagem de comida' />
+          <img src={LoginImg} alt="Imagem de comida" />
         </div>
-        <div>
         <FormContainer>
-      <h2>Login</h2>
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={validateEmail}
-            required
-          />
-          {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
-        </FormGroup>
-
-        <FormGroup>
-          <label htmlFor="password">Senha:</label>
-          <PasswordInputContainer>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onBlur={validatePassword}
-              required
-            />
-            <TogglePassword onClick={togglePasswordVisibility}>
-              {showPassword ? 'Esconder' : 'Mostrar'}
-            </TogglePassword>
-          </PasswordInputContainer>
-          {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
-        </FormGroup>
-
-        <SubmitButton type="submit">Entrar</SubmitButton>
-      </Form>
-    </FormContainer>
-        </div>
-        </>
-    )
-}
+          <h2>Entre na sua conta</h2>
+          <StyledForm onSubmit={Login} autoComplete="off">
+            <FormGroup>
+              <label htmlFor="email">Email:</label>
+              <StyledInput
+                type="email"
+                id="email"
+                name="email"
+                value={form.email}
+                onChange={changeForm}
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                title="Digite um e-mail válido (exemplo: usuario@dominio.com)"
+                placeholder="Digite seu e-mail"
+                required
+              />
+            </FormGroup>
+  
+            <FormGroup>
+              <label htmlFor="password">Senha:</label>
+              <PasswordInputContainer>
+                <StyledInput
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  value={form.password}
+                  onChange={changeForm}
+                  pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&]).{8,}'
+                  title='A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula e um número.'
+                  placeholder="Digite sua senha"
+                  required
+                />
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={togglePasswordVisibility}
+                />
+              </PasswordInputContainer>
+            </FormGroup>
+            <SubmitButton disabled={isLoading}>
+            </SubmitButton>
+          </StyledForm>
+        </FormContainer>
+        <StyledDiv>
+          <StyledButton onClick={() => GoToSignup(navigate)}>
+            Crie uma conta!
+          </StyledButton>
+        </StyledDiv>
+        <GradientLineLogin />
+      </>
+    );
+  };  
